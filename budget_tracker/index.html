@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Budget Tracker</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <base href="/BUDGET_TRACKER/" />
+
+    <style>
+      /* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+/* Header */
+header {
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+header h1 {
+  font-size: 2.5em;
+  font-weight: 500;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #333;
+  padding: 10px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 15px 30px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+nav a:hover {
+  background-color: #4caf50;
+  border-radius: 5px;
+}
+nav a.active {
+  background-color: #4caf50;
+  border-radius: 5px;
+}
+
+/* Container */
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.container h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+.container p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: 60px;
+}
+.modal-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 5px;
+  width: 50%;
+}
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* New Middle Section Styles */
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  background: linear-gradient(120deg, #f4f4f9, #e9ecef);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  text-align: center;
+}
+
+.welcome-section h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.welcome-section p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #218838;
+}
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>MoneyCurve Hub</h1>
+    </header>
+
+    <nav>
+      <a href="LoginRegister/register.php" class="nav-link"
+        ><i class="fas fa-user-plus"></i> Register</a
+      >
+      <a href="LoginRegister/login.php" class="nav-link"
+        ><i class="fas fa-sign-in-alt"></i> Login</a
+      >
+      <a href="CRUD/add_income.php" class="nav-link"
+        ><i class="fas fa-dollar-sign"></i> Add Income</a
+      >
+      <a href="CRUD/view_expenses.php" class="nav-link"
+        ><i class="fas fa-file-invoice"></i> View Expenses</a
+      >
+      <a href="CRUD/update_savings.php" class="nav-link"
+        ><i class="fas fa-piggy-bank"></i> Update Savings</a
+      >
+      <a href="CRUD/delete_purchase.php" class="nav-link"
+        ><i class="fas fa-trash"></i> Delete Purchases</a
+      >
+    </nav>
+
+    <div class="welcome-section">
+        <h1>Welcome to your Budget Tracker!</h1>
+        <p>Stay organized and track your finances in a smarter way.</p>
+        <a href="LoginRegister/register.php" class="cta-button">Get Started</a>
+    </div>
+
+    <footer>&copy; 2024 MoneyCurve Hub | All Rights Reserved</footer>
+
+    <script>
+      // Modal functionality
+      function openModal() {
+        document.getElementById("myModal").style.display = "block";
+      }
+
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+      }
+
+      // Navigation active link
+      const navLinks = document.querySelectorAll(".nav-link");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+          navLinks.forEach((link) => link.classList.remove("active"));
+          this.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
